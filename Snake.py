@@ -87,15 +87,5 @@ curses.endwin()
 print(f"Final score = {score}")
 #When a round ends ask to play again
 #Let play loop last forever until user quits
-play = True
-while play:
-    again = input("Play again? (y/n): ")
-    import Snake
-    if again == "y":
-        play = True
-        print("Starting new game...")
-       
-    else:
-        play = False
-        print("Thanks for playing!")
+
 
