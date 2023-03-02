@@ -1,4 +1,4 @@
-"Snake Game to play in terminal" 
+"Snake Game to play in terminal"
 import curses
 from curses import KEY_RIGHT, KEY_LEFT, KEY_UP, KEY_DOWN
 from random import randint
@@ -30,6 +30,12 @@ while key != ESC:
         f.write(str(score))
     with open('highscore.txt', 'r') as f:
         highscore = int(f.read())
+    #save high score
+    if score > highscore:
+        with open('highscore.txt', 'w') as f:
+            f.write(str(score))
+
+
     # Print welcome message for amount of time of 1 second
     win.addstr(0, 43, 'High Score : ' + str(highscore) + ' ')
     win.addstr(0, 2, 'Score : ' + str(score) + ' ')
@@ -65,7 +71,7 @@ while key != ESC:
     if snake[0][1] == 0: snake[0][1] = 58
     if snake[0][0] == 19: snake[0][0] = 1
     if snake[0][1] == 59: snake[0][1] = 1
-    
+
     # If snake runs over itself
     if snake[0] in snake[1:]: 
         break
@@ -77,12 +83,12 @@ while key != ESC:
             food = [randint(1, 18), randint(1, 58)]
             if food in snake:
                 food = []
-        win.addch(food[0], food[1], '*')
+        win.addch(food[0], food[1], '🍔')
     else:
         # Move snake
         last = snake.pop()
         win.addch(last[0], last[1], ' ')
-    win.addch(snake[0][0], snake[0][1], '#')
+    win.addch(snake[0][0], snake[0][1], '>')
 curses.endwin()
 print(f"Final score = {score}")
 #When a round ends ask to play again
